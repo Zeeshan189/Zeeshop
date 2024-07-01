@@ -1,0 +1,223 @@
+/* You can add global styles to this file, and also import other style files */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+body {
+  margin-bottom: 14vh;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 15vh;
+  /* background-color: #fff; */
+  padding: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-add {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #81c408 !important;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: bold;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.btn-register {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #81c408 !important;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: bold;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.btn-l {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #81c408 !important;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: bold;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --navbar-bg-color: #f8f9fa;
+  --navbar-text-color: #000000;
+}
+
+.dark-mode {
+  --background-color: #2c2c2c;
+  --text-color: #ffffff;
+  --navbar-bg-color: #343a40;
+  --navbar-text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.navbar {
+  background-color: var(--navbar-bg-color);
+  color: var(--navbar-text-color);
+  box-shadow: none; /* Adjust as necessary */
+}
+
+.navbar-toggler-icon {
+  color: #000; /* Adjust color for toggler icon */
+}
+
+.textBlur {
+    color: transparent;
+    text-shadow: 0 0 1px #202122;
+  }
+  
+  .bg-primary {
+    background-color: #81c408 !important;
+  }
+  .display-4 {
+    font-size: calc(1.475rem + 2.7vw) !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    color: #81c408 !important;
+  }
+  .navbar {
+    box-shadow: none;
+  }
+  
+  a:hover {
+    color: #ffff !important;
+  }
+  .card-title {
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block !important;
+    margin-top: 0;
+  }
+  .log_Reg_Border {
+    border: 1px solid pink;
+    border-radius: 20%;
+    margin-left: 10px;
+  }
+  
+  .fa:hover {
+    color: #ffff !important;
+  }
+  
+  .box-shadow {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .img-fluid {
+    height: 200px !important;
+    width: 100% !important;
+    margin-top: 0% !important;
+  }
+  .featurs .featurs-item .featurs-icon {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+  .bg-light {
+    background-color: #f4f6f8 !important;
+  }
+  
+  .featurs .featurs-item .featurs-icon::after {
+    content: "";
+    width: 35px;
+    height: 35px;
+    background: var(--bs-secondary);
+    position: absolute;
+    bottom: -10px;
+    transform: translate(-50%);
+    transform: rotate(45deg);
+    background: var(--bs-secondary);
+  }
+  .text-primary {
+    color: #81c408 !important;
+  }
+  .px-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+  .border-secondary {
+    border-color: #ffb524 !important;
+  }
+  .nav-yellow {
+    background-color: #81c408 !important;
+  }
+  .menuOnLeft {
+    background-color: #f9f9f9;
+    width: 280px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    left: auto;
+    right: 0px;
+    /* Adjust the value to position the dropdown */
+  }
+  .menuOnLeft2 {
+    background-color: #f9f9f9;
+    width: 280px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    left: auto;
+    right: 100px;
+    /* Adjust the value to position the dropdown */
+  }
+  .closeBtn {
+    font-size: 25px;
+    color: black;
+    margin-top: -56px;
+  }
+  
+  #checkout {
+    background-color: transparent;
+    background-image: linear-gradient(
+      226.69deg,
+      #e5f8ff8c 38.63%,
+      #f9e0b014 82.88%
+    );
+  }
+  @media (min-width: 375px) {
+    .productHeading ul {
+      flex-direction: column;
+    }
+  }
+  /* login */
+  img {
+    margin: 0 auto;
+    display: block;
+    height: 170px;
+  }

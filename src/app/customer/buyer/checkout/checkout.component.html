@@ -1,0 +1,76 @@
+<div class="container mt-5" *ngIf="cartitems.length != 0">
+  <table class="table table-success table-hover text-center">
+    <thead>
+      <tr>
+        <th scope="col">Sr.No</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartitems; track let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.name }}</td>
+        <td>
+          <img [src]="'data:image/jpeg;base64,' + item.uploadPhoto" alt="User" style="width: 47px; height: 38px; border-radius: 20%" />
+        </td>
+        <td>${{ item.dp }}</td>
+        <td>${{ item.totalPrice }}</td>
+        <td style="width: 10%;">
+          <input class="form-control" type="number" min="1" [(ngModel)]="item.quantity" (change)="updateTotalPrice(item)" style="width: 100%;"/>
+        </td>
+        <td>
+          <button class="btn btn-success" (click)="removeproduct(item)">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <strong style="margin-left: 88%">Sub Total: ${{ totalamount }}</strong>
+  </div>
+
+  <button class="btn btn-success" routerLink="/buyer-dashboard">
+    Add more items
+  </button>
+</div>
+
+<div *ngIf="cartitems.length == 0">
+  <div>
+    <img src="assets/cart.png" alt="" />
+    <h2 class="center">Your Cart is Empty</h2>
+    <button class="btn btn-success" routerLink="/buyer-dashboard">
+      Shop Now
+    </button>
+  </div>
+</div>
+
+<div class="col-md-12 mt-3">
+  <div class="card">
+    <div class="card-header"><strong>Address Detail</strong></div>
+    <div class="card-body">
+      <p class="card-text"><b>Address:</b> {{ user_address.addLine1 }}</p>
+      <p class="card-text">
+        <b>City:</b> {{ user_address.city }}, <b>State:</b>
+        {{ user_address.state }}
+      </p>
+      <p class="card-text"><b>Postal Code:</b> {{ user_address.zipCode }}</p>
+      <p class="card-text"><b>Contact Number:</b> {{ user_contact_no }}</p>
+      <a class="btn" [class.disabled]="cartitems.length == 0" (click)="checkout()">Checkout ☻</a>
+      <div class="alert alert-success mt-2" role="alert">
+        <strong>Note:</strong> We are not providing multiple address addition.
+        If you want to deliver to a different address, please change it in the
+        <span routerLink="/my-profile" class="text-primary sim-pointer"
+          >My Profile</span
+        >
+        section.
+      </div>
+    </div>
+  </div>
+</div>

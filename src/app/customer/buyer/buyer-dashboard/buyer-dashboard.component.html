@@ -1,0 +1,102 @@
+<br />
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+    <li class="breadcrumb-item">
+      <a routerLink="/buyer-dashboard">Products</a>
+    </li>
+  </ol>
+</nav>
+
+<form class="d-flex" role="search">
+  <input
+    class="form-search form-control me-2"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+    [formControl]="searchControl"
+  />
+  <button
+    class="btn-fa"
+    type="button"
+    (click)="searchProducts()"
+  >
+    <i class="fas fa-search"></i>
+  </button>
+</form>
+
+<div class="row">
+  <div class="col-12" *ngIf="filteredProducts.length === 0">
+    <h3 class="not-foundp mt-3">No products found.</h3>
+  </div>
+
+  <div
+    class="col-12 col-sm-6 col-md-4 col-lg-3 product"
+    *ngFor="let product of paginated_products"
+  >
+    <div class="card mt-2">
+      <img
+        class="img-fluid"
+        [src]="'data:image/jpeg;base64,' + product.uploadPhoto"
+        class="card-img-top"
+        alt="{{ product.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">
+          <span class="text-danger fw-semibold me-2">${{ product.dp }}</span>
+          <del>${{ product.mrp }}</del>
+        </p>
+        <div class="row">
+          <div class="col-6">
+            <span>
+              <i class="fa-solid fa-star" style="color: #f1f50f"></i>
+              <i class="fa-solid fa-star" style="color: #f1f50f"></i>
+              <i
+                class="fa-solid fa-star-half-stroke"
+                style="color: #f1f50f"
+              ></i>
+              <span class="text-white">(25)</span>
+            </span>
+          </div>
+          <div class="col-6 text-end">
+            <button
+              class="btn-card btn-success p-2"
+              (click)="AddtoCart(product)"
+            >
+              <i class="fa-solid fa-cart-plus fs-5" style="color: #fff"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center mt-3">
+    <li class="page-item" [class.disabled]="current_page === 1">
+      <a class="page-link" (click)="setPage(current_page - 1)">Previous</a>
+    </li>
+    <li
+      class="page-item"
+      *ngFor="
+        let page of [].constructor(
+          Math.ceil(all_products.length / items_per_page)
+        );
+        let pageNo = index
+      "
+      [class.active]="current_page === pageNo + 1"
+    >
+      <a class="page-link" (click)="setPage(pageNo + 1)">{{ pageNo + 1 }}</a>
+    </li>
+    <li
+      class="page-item"
+      [class.disabled]="
+        current_page === Math.ceil(all_products.length / items_per_page)
+      "
+    >
+      <a class="page-link" (click)="setPage(current_page + 1)">Next</a>
+    </li>
+  </ul>
+</nav>

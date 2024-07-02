@@ -99,6 +99,6 @@ export class CheckoutComponent implements OnInit {
 
   updateTotalPrice(item: Product) {
     item.totalPrice = item.dp * item.quantity;
-    this.calculationamount(); // Update total amount
+    this.calculationamount();
   }
 }

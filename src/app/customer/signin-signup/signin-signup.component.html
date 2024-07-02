@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3" *ngIf="regForm">
-        <h2 class="text-center mt-2"><b>Registration</b></h2>
+        <h2 class="txt-reg text-center mt-2"><b>Registration</b></h2>
         <form [formGroup]="signUpfrom" (ngSubmit)="onSubmitSignUp()">
           <div class="form-group">
             <label>Name</label>
@@ -279,7 +279,7 @@
       </div>
 
       <div class="col-md-6 offset-md-3" *ngIf="!regForm">
-        <h2 class="text-center mt-2"><b>Login</b></h2>
+        <h2 class="txt-lg text-center mt-2"><b>Login</b></h2>
         <form
           name="form"
           #tf="ngForm"

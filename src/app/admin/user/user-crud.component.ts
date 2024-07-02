@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { AdminService } from '../services/admin.service';
 import { User } from '../../core/Model/object.model';
+import Swal from 'sweetalert2'
 declare var $: any;
 
 @Component({
@@ -101,6 +102,7 @@ export class UserCrudComponent implements OnInit {
     };
     this.adminService.addUser(this.user_dto).subscribe(
       (data) => {
+        Swal.fire("User Add Successfully!");
         this.addEditUserForm.reset();
         this.getAllUser();
         $('#addEditUserModal').modal('toggle');
@@ -178,7 +180,7 @@ export class UserCrudComponent implements OnInit {
     };
     this.adminService.editUser(this.edit_user_id, this.user_dto).subscribe(
       (data) => {
-        alert('User Update Successfully')
+        Swal.fire("User Update Successfully!");
         this.addEditUserForm.reset();
         this.getAllUser();
         $('#addEditUserModal').modal('toggle');
@@ -190,11 +192,26 @@ export class UserCrudComponent implements OnInit {
   }
 
   deleteUser(user_id:any){
-    this.adminService.deleteUser(user_id).subscribe(data=>{
-      this.getAllUser();
-    }, error =>{
-      console.log("My error", error)
-    })
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.adminService.deleteUser(user_id).subscribe((res) => {
+          this.getAllUser();
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
   }
   
 }

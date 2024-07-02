@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Product } from '../core/Model/object.model';
 import { ProductService } from '../shared/services/product.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-product',
@@ -92,6 +93,7 @@ export class ProductComponent implements OnInit {
     };
     this.productService.addNewProduct(this.product_dto).subscribe(
       (data) => {
+        Swal.fire("Product Add Successfully!");
         this.addEditProductDForm.reset();
         this.getAllProduct();
       },
@@ -162,7 +164,7 @@ export class ProductComponent implements OnInit {
       .updateProduct(this.edit_product_id, this.product_dto)
       .subscribe(
         (data) => {
-          alert('Product Update Successfully!!');
+          Swal.fire("Product Update Successfully!");
           this.addEditProductDForm.reset();
           this.getAllProduct();
         },
@@ -173,19 +175,25 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(id: any) {
-    let conf = confirm('Do you want to delete this product');
-    if (conf) {
-      this.productService.deleteProduct(id).subscribe(
-        (data) => {
-          alert('Product Delete successfully');
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProduct(id).subscribe((res) => {
           this.getAllProduct();
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    } else {
-      alert('You pressed cancel !');
-    }
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
   }
 }

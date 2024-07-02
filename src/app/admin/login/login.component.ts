@@ -36,12 +36,20 @@ export class LoginComponent implements OnInit {
           if (this.user_data && this.user_data.length === 1 && this.user_data[0].email === this.signInFormValue.userEmail && this.user_data[0].password === this.signInFormValue.userPassword) {
             sessionStorage.setItem('user_session_id', this.user_data[0].id);
             sessionStorage.setItem('role', this.user_data[0].role);
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: `You are Login Successfully!`,
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
               showConfirmButton: false,
-              timer: 1500,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Signed in successfully"
             });
             this.router.navigate(['admin-dashboard']);
           } else {

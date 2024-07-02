@@ -48,7 +48,8 @@
             <div class="form-group col-md-12">
               <label for="inputEmail4">Email</label>
               <input
-                type="email"z
+                type="email"
+                z
                 class="form-control"
                 placeholder="Email"
                 formControlName="email"
@@ -186,6 +187,7 @@
               <label for="exampleFormControlSelect2">Gender</label><br />
               <div class="form-check form-check-inline">
                 <input
+                  id="inlineRadio1"
                   class="form-check-input"
                   type="radio"
                   formControlName="gender"
@@ -195,6 +197,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <input
+                  id="inlineRadio2"
                   class="form-check-input"
                   type="radio"
                   formControlName="gender"
@@ -235,7 +238,9 @@
                   class="form-check-input"
                   type="checkbox"
                   formControlName="agreetc"
-                  [class.is-invalid]="rf['agreetc'].invalid && rf['agreetc'].touched"
+                  [class.is-invalid]="
+                    rf['agreetc'].invalid && rf['agreetc'].touched
+                  "
                 />
                 <label class="form-check-label" for="gridCheck">
                   Agree our term and condition

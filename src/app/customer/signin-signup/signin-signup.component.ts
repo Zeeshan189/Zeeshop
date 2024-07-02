@@ -11,6 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 import { User } from '../../core/Model/object.model';
 import { LoginSignupService } from '../../shared/services/login-signup.service';
 import { HttpClientModule } from '@angular/common/http';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-signin-signup',
@@ -107,7 +108,13 @@ export class SigninSignupComponent {
           };
           this.loginService.userRegister(this.user_dto).subscribe(
             (data) => {
-              alert('User Register Successful ☺');
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: `You are registered Successfully!`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
               this.router.navigate(['sign-in']);
             },
             (error) => {

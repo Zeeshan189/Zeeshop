@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginSignupService } from '../../shared/services/login-signup.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -35,6 +36,13 @@ export class LoginComponent implements OnInit {
           if (this.user_data && this.user_data.length === 1 && this.user_data[0].email === this.signInFormValue.userEmail && this.user_data[0].password === this.signInFormValue.userPassword) {
             sessionStorage.setItem('user_session_id', this.user_data[0].id);
             sessionStorage.setItem('role', this.user_data[0].role);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: `You are Login Successfully!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
             this.router.navigate(['admin-dashboard']);
           } else {
             alert('Invalid email or password');

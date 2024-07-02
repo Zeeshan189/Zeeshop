@@ -62,7 +62,9 @@ export class BuyerDashboardComponent implements OnInit {
       return this.all_products;
     }
     return this.all_products.filter((product: Product) =>
-      product.name.toLowerCase().includes(this.searchControl.value.toLowerCase())
+      product.name
+        .toLowerCase()
+        .includes(this.searchControl.value.toLowerCase())
     );
   }
 

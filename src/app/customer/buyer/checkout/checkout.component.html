@@ -16,12 +16,23 @@
         <td>{{ i + 1 }}</td>
         <td>{{ item.name }}</td>
         <td>
-          <img [src]="'data:image/jpeg;base64,' + item.uploadPhoto" alt="User" style="width: 47px; height: 38px; border-radius: 20%" />
+          <img
+            [src]="'data:image/jpeg;base64,' + item.uploadPhoto"
+            alt="User"
+            style="width: 47px; height: 38px; border-radius: 20%"
+          />
         </td>
         <td>${{ item.dp }}</td>
         <td>${{ item.totalPrice }}</td>
-        <td style="width: 10%;">
-          <input class="form-control" type="number" min="1" [(ngModel)]="item.quantity" (change)="updateTotalPrice(item)" style="width: 100%;"/>
+        <td style="width: 10%">
+          <input
+            class="form-control"
+            type="number"
+            min="1"
+            [(ngModel)]="item.quantity"
+            (change)="updateTotalPrice(item)"
+            style="width: 100%"
+          />
         </td>
         <td>
           <button class="btn btn-success" (click)="removeproduct(item)">
@@ -62,7 +73,12 @@
       </p>
       <p class="card-text"><b>Postal Code:</b> {{ user_address.zipCode }}</p>
       <p class="card-text"><b>Contact Number:</b> {{ user_contact_no }}</p>
-      <a class="btn" [class.disabled]="cartitems.length == 0" (click)="checkout()">Checkout ☻</a>
+      <a
+        class="btn"
+        [class.disabled]="cartitems.length == 0"
+        (click)="checkout()"
+        >Checkout ☻</a
+      >
       <div class="alert alert-success mt-2" role="alert">
         <strong>Note:</strong> We are not providing multiple address addition.
         If you want to deliver to a different address, please change it in the

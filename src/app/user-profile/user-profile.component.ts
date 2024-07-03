@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { User } from '../core/Model/object.model';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-user-profile',
@@ -91,7 +92,7 @@ export class UserProfileComponent implements OnInit{
       role:this.user_update_data.role
     }
     this.user_Service.updateUserData(this.user_id, this.user_dto).subscribe(data=>{
-      alert("Profile Update Successfull !");
+      Swal.fire("Profile Update Successfully!");
       if(this.user_role =='admin'){
         this.router.navigate(['admin-dashboard'])
       }else if(this.user_role=='seller'){

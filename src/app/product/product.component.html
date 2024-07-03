@@ -35,7 +35,11 @@
       <td>{{ product_data.mrp }}</td>
       <td>{{ product_data.dp }}</td>
       <td>
-        <img [src]="'data:image/jpeg;base64,' + product_data.uploadPhoto" alt="Product Image" style="width: 47px; height: 38px; border-radius: 20%;" />
+        <img
+          [src]="'data:image/jpeg;base64,' + product_data.uploadPhoto"
+          alt="Product Image"
+          style="width: 47px; height: 38px; border-radius: 20%"
+        />
       </td>
       <td>{{ product_data.status }}</td>
       <td>
@@ -44,12 +48,12 @@
           (click)="editProductPopup(product_data.id)"
           data-bs-toggle="modal"
           data-bs-target="#addEditProductModal"
-          ><i class="fa-solid fa-pen-to-square"></i></span
-        >
+          ><i class="fa-solid fa-pen-to-square"></i
+        ></span>
         &nbsp; &nbsp; &nbsp;
         <span class="sim-pointer" (click)="deleteProduct(product_data.id)"
-          ><i class="fa-solid fa-trash-can"></i></span
-        >
+          ><i class="fa-solid fa-trash-can"></i
+        ></span>
       </td>
     </tr>
   </tbody>
@@ -64,7 +68,10 @@
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content" [ngClass]="{'dark-mode': isDarkMode, 'light-mode': !isDarkMode}">
+    <div
+      class="modal-content"
+      [ngClass]="{ 'dark-mode': isDarkMode, 'light-mode': !isDarkMode }"
+    >
       <div class="modal-header">
         <h5 class="modal-title">{{ popup_header }}</h5>
         <button
@@ -80,7 +87,10 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-md-10 offset-md-1">
-            <form [formGroup]="addEditProductDForm" enctype="multipart/form-data">
+            <form
+              [formGroup]="addEditProductDForm"
+              enctype="multipart/form-data"
+            >
               <div class="form-group">
                 <label for="productName">Product Name</label>
                 <input
@@ -103,20 +113,30 @@
               <div class="form-group">
                 <label for="productImage">Product Image</label>
                 <span *ngIf="edit_prouct">
-                  <img *ngIf="upload_file_name" [src]="'data:image/jpeg;base64,' + upload_file_name" alt="Product Image" style="max-width: 30%; height: auto;" />
+                  <img
+                    *ngIf="upload_file_name"
+                    [src]="'data:image/jpeg;base64,' + upload_file_name"
+                    alt="Product Image"
+                    style="max-width: 30%; height: auto"
+                  />
                 </span>
                 <input
                   type="file"
                   (change)="onFileChange($event)"
                   formControlName="uploadPhoto"
-                  [class.is-invalid]="rf['uploadPhoto'].invalid && rf['uploadPhoto'].touched"
+                  [class.is-invalid]="
+                    rf['uploadPhoto'].invalid && rf['uploadPhoto'].touched
+                  "
                 />
                 <div
                   class="alert alert-danger"
                   *ngIf="rf['uploadPhoto'].invalid && rf['uploadPhoto'].touched"
                 >
                   <div
-                    *ngIf="rf['uploadPhoto'].errors && rf['uploadPhoto'].errors['required']"
+                    *ngIf="
+                      rf['uploadPhoto'].errors &&
+                      rf['uploadPhoto'].errors['required']
+                    "
                   >
                     Image is required
                   </div>

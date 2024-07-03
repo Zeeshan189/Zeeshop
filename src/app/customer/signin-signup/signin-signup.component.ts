@@ -76,7 +76,7 @@ export class SigninSignupComponent {
       Object.values(this.signUpfrom.controls).forEach((control) => {
         control.markAsTouched();
       });
-      alert('Please fill out all required fields.');
+      Swal.fire('Please fill out all required fields 🙄!');
       return;
     }
 
@@ -87,7 +87,7 @@ export class SigninSignupComponent {
         this.user_data = res;
         const user = this.user_data.find((user: any) => user.email === email);
         if (user) {
-          alert('Email already exists. Please use a different email.');
+          Swal.fire('Email already exists. Please use a different email 🙄!');
         } else {
           this.user_reg_data = this.signUpfrom.value;
           this.user_dto = {
@@ -111,7 +111,7 @@ export class SigninSignupComponent {
               Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: `You are registered Successfully!`,
+                title: `You are registered Successfully 😊!`,
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -155,13 +155,13 @@ export class SigninSignupComponent {
                 sessionStorage.setItem('role', user.role);
                 this.router.navigate(['buyer-dashboard']);
               } else {
-                alert('Invalid login details');
+                Swal.fire('Invalid login details 😠!')
               }
             } else {
-              alert('Email or password is incorrect.');
+              Swal.fire("Email or Password do not match 🤔!");
             }
           } else {
-            alert('Email or password is incorrect.');
+            Swal.fire('Email or password is incorrect 🙄!');
           }
           console.log(this.user_data);
         },

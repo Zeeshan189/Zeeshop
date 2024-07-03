@@ -80,7 +80,7 @@ export class CheckoutComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: `You Checkout Successfully!`,
+          title: `You Checkout Successfully 😃!`,
           showConfirmButton: false,
           timer: 1500,
         });

@@ -102,7 +102,7 @@ export class UserCrudComponent implements OnInit {
     };
     this.adminService.addUser(this.user_dto).subscribe(
       (data) => {
-        Swal.fire("User Add Successfully!");
+        Swal.fire("User Add Successfully 😊!");
         this.addEditUserForm.reset();
         this.getAllUser();
         $('#addEditUserModal').modal('toggle');
@@ -180,7 +180,7 @@ export class UserCrudComponent implements OnInit {
     };
     this.adminService.editUser(this.edit_user_id, this.user_dto).subscribe(
       (data) => {
-        Swal.fire("User Update Successfully!");
+        Swal.fire("User Update Successfully 😊!");
         this.addEditUserForm.reset();
         this.getAllUser();
         $('#addEditUserModal').modal('toggle');
@@ -194,7 +194,7 @@ export class UserCrudComponent implements OnInit {
   deleteUser(user_id:any){
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You won't be able to revert this 🙄!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -207,7 +207,7 @@ export class UserCrudComponent implements OnInit {
         });
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "Your file has been deleted 😊!",
           icon: "success"
         });
       }

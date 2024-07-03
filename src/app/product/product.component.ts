@@ -93,7 +93,7 @@ export class ProductComponent implements OnInit {
     };
     this.productService.addNewProduct(this.product_dto).subscribe(
       (data) => {
-        Swal.fire('Product Add Successfully!');
+        Swal.fire('Product Add Successfully 😊!');
         this.addEditProductDForm.reset();
         this.getAllProduct();
       },
@@ -164,7 +164,7 @@ export class ProductComponent implements OnInit {
       .updateProduct(this.edit_product_id, this.product_dto)
       .subscribe(
         (data) => {
-          Swal.fire('Product Update Successfully!');
+          Swal.fire('Product Update Successfully 😊!');
           this.addEditProductDForm.reset();
           this.getAllProduct();
         },
@@ -177,7 +177,7 @@ export class ProductComponent implements OnInit {
   deleteProduct(id: any) {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "You won't be able to revert this 🙄!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -190,7 +190,7 @@ export class ProductComponent implements OnInit {
         });
         Swal.fire({
           title: 'Deleted!',
-          text: 'Your file has been deleted.',
+          text: 'Your file has been deleted 😊!',
           icon: 'success',
         });
       }

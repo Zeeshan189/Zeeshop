@@ -108,7 +108,7 @@ export class UserProfileComponent implements OnInit {
     };
     this.user_Service.updateUserData(this.user_id, this.user_dto).subscribe(
       (data) => {
-        Swal.fire('Profile Update Successfully!');
+        Swal.fire('Profile Update Successfully 😊!');
         if (this.user_role == 'admin') {
           this.router.navigate(['admin-dashboard']);
         } else if (this.user_role == 'seller') {

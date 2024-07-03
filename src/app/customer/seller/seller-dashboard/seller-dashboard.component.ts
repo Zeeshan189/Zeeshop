@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-seller-dashboard',
@@ -35,7 +36,7 @@ export class SellerDashboardComponent implements OnInit {
   }
 
   sellerOrderDashboard() {
-    alert('this option only for Administrator.You cannot access this !!');
+    Swal.fire('This option only for Admin.You cannot access this 🙄!!');
   }
 
   sellerOrderDashboardData() {

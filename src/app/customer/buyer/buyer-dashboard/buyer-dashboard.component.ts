@@ -78,7 +78,7 @@ export class BuyerDashboardComponent implements OnInit {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: `Added to Cart Successfully. Quantity: ${quantity}`,
+      title: `Add to Cart Successfully. Quantity: ${quantity} 😊`,
       showConfirmButton: false,
       timer: 1500,
     });

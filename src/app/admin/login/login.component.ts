@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
             });
             Toast.fire({
               icon: "success",
-              title: "Signed in successfully 😊!!"
+              title: "Signed in successfully 😊!"
             });
             this.router.navigate(['admin-dashboard']);
           } else {

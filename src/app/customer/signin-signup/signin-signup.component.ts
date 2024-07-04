@@ -158,10 +158,10 @@ export class SigninSignupComponent {
                 Swal.fire('Invalid login details 😠!')
               }
             } else {
-              Swal.fire("Email or Password do not match 🤔!");
+              Swal.fire('Email or password is incorrect 🙄!');
             }
           } else {
-            Swal.fire('Email or password is incorrect 🙄!');
+            Swal.fire("Email or Password do not match 🤔!");
           }
           console.log(this.user_data);
         },

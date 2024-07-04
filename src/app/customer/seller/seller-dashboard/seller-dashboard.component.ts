@@ -36,7 +36,7 @@ export class SellerDashboardComponent implements OnInit {
   }
 
   sellerOrderDashboard() {
-    Swal.fire('This option only for Admin.You cannot access this 🙄!!');
+    Swal.fire('This option only for Admin.You cannot access this 🙄!');
   }
 
   sellerOrderDashboardData() {

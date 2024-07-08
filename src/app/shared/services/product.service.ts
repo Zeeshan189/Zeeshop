@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../core/service/api.service';
@@ -9,7 +8,7 @@ import { ApiService } from '../../core/service/api.service';
 export class ProductService {
   public product_url=" http://localhost:3000/products/"
 
-  constructor(private httpClient:HttpClient, private apiService:ApiService) { }
+  constructor(private apiService:ApiService) { }
   allProduct():Observable<any>{
     return this.apiService.get(this.product_url);
   }

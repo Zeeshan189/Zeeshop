@@ -58,10 +58,6 @@ export class ProductComponent implements OnInit {
     this.productService.allProduct().subscribe(
       (data) => {
         this.all_product_data = data;
-        console.log('My All product', this.all_product_data);
-      },
-      (error) => {
-        console.log('Somthing went wrong ', error);
       }
     );
   }

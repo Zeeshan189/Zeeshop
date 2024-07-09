@@ -90,5 +90,4 @@ export class BuyerDashboardComponent implements OnInit {
   sortProducts(products: Product[]): Product[] {
     return products.sort((a, b) => a.name.localeCompare(b.name));
   }
-  
 }

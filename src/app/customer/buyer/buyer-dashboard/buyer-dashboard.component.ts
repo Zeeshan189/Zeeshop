@@ -58,14 +58,17 @@ export class BuyerDashboardComponent implements OnInit {
   }
 
   get filteredProducts(): Product[] {
-    if (!this.searchControl.value) {
-      return this.all_products;
+    let products = this.all_products;
+
+    if (this.searchControl.value) {
+      products = products.filter((product: Product) =>
+        product.name
+          .toLowerCase()
+          .includes(this.searchControl.value.toLowerCase())
+      );
     }
-    return this.all_products.filter((product: Product) =>
-      product.name
-        .toLowerCase()
-        .includes(this.searchControl.value.toLowerCase())
-    );
+
+    return this.sortProducts(products);
   }
 
   searchProducts() {
@@ -83,4 +86,9 @@ export class BuyerDashboardComponent implements OnInit {
       timer: 1500,
     });
   }
+
+  sortProducts(products: Product[]): Product[] {
+    return products.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  
 }

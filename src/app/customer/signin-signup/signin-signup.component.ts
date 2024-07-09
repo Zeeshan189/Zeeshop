@@ -28,8 +28,7 @@ import Swal from 'sweetalert2'
 })
 export class SigninSignupComponent {
   regForm: boolean = false;
-  signUpfrom!: FormGroup;
-  signInfrom!: FormGroup;
+  signUpform!: FormGroup;
   signUpsubmitted = false;
   href: string = '';
   user_data: any;
@@ -50,7 +49,7 @@ export class SigninSignupComponent {
     } else if (this.href == '/sign-in') {
       this.regForm = false;
     }
-    this.signUpfrom = this.formBuilder.group({
+    this.signUpform = this.formBuilder.group({
       name: ['', Validators.required],
       mobNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -61,26 +60,26 @@ export class SigninSignupComponent {
       zipCode: ['', Validators.required],
       gender: ['', Validators.required],
       uploadPhoto: ['', Validators.required],
-      agreetc: ['', Validators.required],
+      agreetc: ['', Validators.requiredTrue],
       role: ['', Validators.required],
     });
   }
 
   get rf() {
-    return this.signUpfrom.controls;
+    return this.signUpform.controls;
   }
 
   onSubmitSignUp() {
     debugger;
-    if (this.signUpfrom.invalid) {
-      Object.values(this.signUpfrom.controls).forEach((control) => {
+    if (this.signUpform.invalid) {
+      Object.values(this.signUpform.controls).forEach((control) => {
         control.markAsTouched();
       });
       Swal.fire('Please fill out all required fields 🙄!');
       return;
     }
 
-    const email = this.signUpfrom.get('email')?.value;
+    const email = this.signUpform.get('email')?.value;
 
     this.loginService.checkDuplicateEmail().subscribe(
       (res) => {
@@ -89,7 +88,7 @@ export class SigninSignupComponent {
         if (user) {
           Swal.fire('Email already exists. Please use a different email 🙄!');
         } else {
-          this.user_reg_data = this.signUpfrom.value;
+          this.user_reg_data = this.signUpform.value;
           this.user_dto = {
             agreetc: this.user_reg_data.agreetc,
             email: this.user_reg_data.email,

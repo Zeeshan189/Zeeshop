@@ -100,14 +100,10 @@
                   [class.is-invalid]="rf['name'].invalid && rf['name'].touched"
                 />
                 <div
-                  class="alert alert-danger"
+                  class="text-danger"
                   *ngIf="rf['name'].invalid && rf['name'].touched"
                 >
-                  <div
-                    *ngIf="rf['name'].errors && rf['name'].errors['required']"
-                  >
-                    name is required
-                  </div>
+                  name is required
                 </div>
               </div>
               <div class="form-group">
@@ -121,17 +117,10 @@
                   "
                 />
                 <div
-                  class="alert alert-danger"
+                  class="text-danger"
                   *ngIf="rf['mobNumber'].invalid && rf['mobNumber'].touched"
                 >
-                  <div
-                    *ngIf="
-                      rf['mobNumber'].errors &&
-                      rf['mobNumber'].errors['required']
-                    "
-                  >
-                    Mobile Number is required
-                  </div>
+                  Mobile Number is required
                 </div>
               </div>
               <div class="form-row">
@@ -147,16 +136,10 @@
                     "
                   />
                   <div
-                    class="alert alert-danger"
+                    class="text-danger"
                     *ngIf="rf['email'].invalid && rf['email'].touched"
                   >
-                    <div
-                      *ngIf="
-                        rf['email'].errors && rf['email'].errors['required']
-                      "
-                    >
-                      Email is required
-                    </div>
+                    Email is required
                   </div>
                 </div>
                 <div class="form-group col-md-12">
@@ -171,17 +154,10 @@
                     "
                   />
                   <div
-                    class="alert alert-danger"
+                    class="text-danger"
                     *ngIf="rf['password'].invalid && rf['password'].touched"
                   >
-                    <div
-                      *ngIf="
-                        rf['password'].errors &&
-                        rf['password'].errors['required']
-                      "
-                    >
-                      Password is required
-                    </div>
+                    Password is required
                   </div>
                 </div>
               </div>
@@ -197,16 +173,10 @@
                   "
                 />
                 <div
-                  class="alert alert-danger"
+                  class="text-danger"
                   *ngIf="rf['addLine1'].invalid && rf['addLine1'].touched"
                 >
-                  <div
-                    *ngIf="
-                      rf['addLine1'].errors && rf['addLine1'].errors['required']
-                    "
-                  >
-                    Address is required
-                  </div>
+                  Address is required
                 </div>
               </div>
               <div class="form-row">
@@ -221,14 +191,10 @@
                     "
                   />
                   <div
-                    class="alert alert-danger"
+                    class="text-danger"
                     *ngIf="rf['city'].invalid && rf['city'].touched"
                   >
-                    <div
-                      *ngIf="rf['city'].errors && rf['city'].errors['required']"
-                    >
-                      City is required
-                    </div>
+                    City is required
                   </div>
                 </div>
                 <div class="form-group col-md-6">
@@ -247,16 +213,10 @@
                     <option>HP</option>
                   </select>
                   <div
-                    class="alert alert-danger"
+                    class="text-danger"
                     *ngIf="rf['state'].invalid && rf['state'].touched"
                   >
-                    <div
-                      *ngIf="
-                        rf['state'].errors && rf['state'].errors['required']
-                      "
-                    >
-                      State is required
-                    </div>
+                    State is required
                   </div>
                 </div>
                 <div class="form-group col-md-6">
@@ -270,16 +230,10 @@
                     "
                   />
                   <div
-                    class="alert alert-danger"
+                    class="text-danger"
                     *ngIf="rf['zipCode'].invalid && rf['zipCode'].touched"
                   >
-                    <div
-                      *ngIf="
-                        rf['zipCode'].errors && rf['zipCode'].errors['required']
-                      "
-                    >
-                      Zipcode is required
-                    </div>
+                    Zipcode is required
                   </div>
                 </div>
               </div>
@@ -324,17 +278,10 @@
                   "
                 />
                 <div
-                  class="alert alert-danger"
+                  class="text-danger"
                   *ngIf="rf['uploadPhoto'].invalid && rf['uploadPhoto'].touched"
                 >
-                  <div
-                    *ngIf="
-                      rf['uploadPhoto'].errors &&
-                      rf['uploadPhoto'].errors['required']
-                    "
-                  >
-                    Image is required
-                  </div>
+                  Image is required
                 </div>
               </div>
               <div class="form-group">
@@ -349,14 +296,10 @@
                   <option value="buyer">buyer</option>
                 </select>
                 <div
-                  class="alert alert-danger"
+                  class="text-danger"
                   *ngIf="rf['role'].invalid && rf['role'].touched"
                 >
-                  <div
-                    *ngIf="rf['role'].errors && rf['role'].errors['required']"
-                  >
-                    Role is required
-                  </div>
+                  Role is required
                 </div>
               </div>
               <div class="form-group">
@@ -373,6 +316,12 @@
                   <label class="form-check-label" for="gridCheck">
                     Agree our term and condition
                   </label>
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="rf['agreetc'].invalid && rf['agreetc'].touched"
+                >
+                  You must agree to the terms and conditions
                 </div>
               </div>
               <div class="form-group">

@@ -70,7 +70,6 @@ export class SigninSignupComponent {
   }
 
   onSubmitSignUp() {
-    debugger;
     if (this.signUpform.invalid) {
       Object.values(this.signUpform.controls).forEach((control) => {
         control.markAsTouched();

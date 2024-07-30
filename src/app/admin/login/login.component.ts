@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
   styleUrl: './login.component.css',
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   signInFormValue: any = {};
   user_data: any;
 
@@ -21,8 +21,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginSignupService
   ) {}
-
-  ngOnInit(): void {}
 
   onSubmitSignIn() {
     this.loginService

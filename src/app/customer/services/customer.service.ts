@@ -18,7 +18,6 @@ export class CustomerService {
   public user_url = 'http://localhost:3000/user/';
   public product_url = 'http://localhost:3000/products/';
   public order_url = 'http://localhost:3000/orders/';
-  private themeKey = 'themePreference';
 
   private storagekey = 'CartItem';
   constructor(private apiService: ApiService, private http: HttpClient) {

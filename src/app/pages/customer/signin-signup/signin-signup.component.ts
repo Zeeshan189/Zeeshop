@@ -13,6 +13,7 @@ import { LoginSignupService } from '../../shared/services/login-signup.service';
 import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { DemoNgZorroAntdModule } from '../../../ng-zorro-antd.module';
+import { AdminService } from '../../admin/services/admin.service';
 
 @Component({
   selector: 'app-signin-signup',
@@ -34,11 +35,13 @@ export class SigninSignupComponent {
   regForm: boolean = false;
   href: string = '';
   user_data: any;
+  upload_file_name!: any;
   validateForm!: FormGroup;
 
   constructor(
     private fb: NonNullableFormBuilder,
     private serv: LoginSignupService,
+    private adminService: AdminService,
     private route: Router
   ) {
     this.href = this.route.url;
@@ -46,14 +49,14 @@ export class SigninSignupComponent {
       this.regForm = true;
       this.validateForm = this.fb.group({
         name: ['', [Validators.required]],
-        mobile: ['', [Validators.required]],
+        mobNumber: ['', [Validators.required]],
         email: ['', [Validators.email, Validators.required]],
         password: ['', [Validators.required]],
         address: ['', [Validators.required]],
         city: ['', [Validators.required]],
-        code: ['', [Validators.required]],
+        zipCode: ['', [Validators.required]],
         gender: ['', [Validators.required]],
-        image: ['', [Validators.required]],
+        uploadPhoto: ['', [Validators.required]],
         role: ['', [Validators.required]],
       });
     } else if (this.href == '/sign-in') {
@@ -62,6 +65,21 @@ export class SigninSignupComponent {
         email: [null, [Validators.email, Validators.required]],
         password: [null, [Validators.required]],
       });
+    }
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.upload_file_name = reader.result?.toString().split(',')[1];
+
+        this.validateForm.patchValue({
+          uploadPhoto: this.upload_file_name,
+        });
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -75,7 +93,7 @@ export class SigninSignupComponent {
       if (user) {
         Swal.fire('Email already exists. Please use a different email 🙄!');
       } else {
-        this.serv.userRegister(userData).subscribe((res) => {
+        this.adminService.addUser(userData).subscribe((res) => {
           Swal.fire('User Add Successfully 😊!');
           this.validateForm.reset();
           this.route.navigate(['sign-in']);

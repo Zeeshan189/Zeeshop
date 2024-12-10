@@ -28,6 +28,7 @@ export class UserProfileComponent implements OnInit {
   user_dto!: User;
   user_profile_pic: any;
   user_role: any;
+  showPassword = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,9 +43,8 @@ export class UserProfileComponent implements OnInit {
       mobNumber: ['', Validators.required],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      addLine1: ['', Validators.required],
+      address: ['', Validators.required],
       city: ['', Validators.required],
-      state: ['', Validators.required],
       zipCode: ['', Validators.required],
       gender: ['', Validators.required],
       uploadPhoto: [''],
@@ -54,6 +54,10 @@ export class UserProfileComponent implements OnInit {
 
   get rf() {
     return this.userProfileForm.controls;
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   editUserData(user_id: any) {
@@ -68,9 +72,8 @@ export class UserProfileComponent implements OnInit {
           email: this.user_data.email,
           password: this.user_data.password,
           gender: this.user_data.gender,
-          addLine1: this.user_data.address.addLine1,
+          address: this.user_data.address.address,
           city: this.user_data.address.city,
-          state: this.user_data.address.state,
           zipCode: this.user_data.address.zipCode,
           uploadPhoto: '',
         });
@@ -92,12 +95,9 @@ export class UserProfileComponent implements OnInit {
       agreetc: this.user_update_data.agreetc,
       email: this.user_update_data.email,
       gender: this.user_update_data.gender,
-      address: {
-        addLine1: this.user_update_data.addLine1,
-        city: this.user_update_data.city,
-        state: this.user_update_data.state,
-        zipCode: Number(this.user_update_data.zipCode),
-      },
+      address: this.user_update_data.address,
+      city: this.user_update_data.city,
+      zipCode: Number(this.user_update_data.zipCode),
       mobNumber: this.user_update_data.mobNumber,
       name: this.user_update_data.name,
       password: this.user_update_data.password,

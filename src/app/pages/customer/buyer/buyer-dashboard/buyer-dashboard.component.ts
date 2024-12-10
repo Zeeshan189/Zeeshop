@@ -15,7 +15,7 @@ import { debounceTime } from 'rxjs';
   styleUrl: './buyer-dashboard.component.css',
 })
 export class BuyerDashboardComponent implements OnInit {
-  all_products: any;
+  all_products: Product[] = [];
   user_id!: string;
   paginated_products: Product[] = [];
   current_page: number = 1;

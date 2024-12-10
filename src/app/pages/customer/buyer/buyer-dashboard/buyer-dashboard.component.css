@@ -90,7 +90,8 @@
   background-color: #001529 !important;
   padding: 5px 15px;
   border: 2px solid transparent;
-  border-radius: 10%;
+  border-top-right-radius: 15%;
+  border-bottom-right-radius: 15%;
   color: #fff;
   border-color: #001529 !important;
 }

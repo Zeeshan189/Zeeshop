@@ -42,7 +42,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      formControlName="mobile"
+                      formControlName="mobNumber"
                       placeholder="+92 3037896790"
                       id="username"
                     />
@@ -142,7 +142,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      formControlName="code"
+                      formControlName="zipCode"
                       placeholder="Zip Code"
                       id="username"
                     />
@@ -180,7 +180,8 @@
                     <input
                       type="file"
                       class="form-control"
-                      formControlName="image"
+                      (change)="onFileChange($event)"
+                      formControlName="uploadPhoto"
                       placeholder="choose File"
                       id="username"
                     />

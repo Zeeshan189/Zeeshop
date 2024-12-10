@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AdminService {
   public user_url = 'http://localhost:3000/user/';
   public product_url = 'http://localhost:3000/products/';
-  public all_user = 'http://localhost:3000/user';
+  // public all_user = 'http://localhost:3000/user';
 
   constructor(private apiService: ApiService) {}
 
@@ -21,7 +21,7 @@ export class AdminService {
   }
 
   allUser(): Observable<any> {
-    return this.apiService.get(this.all_user);
+    return this.apiService.get(this.user_url);
   }
 
   addUser(user_dto: any) {
@@ -29,17 +29,17 @@ export class AdminService {
   }
 
   // get data of individual user //
-  singleuUser(user_id: any) {
-    return this.apiService.get(this.user_url + user_id);
+  singleuUser(id: any) {
+    return this.apiService.get(this.user_url + id);
   }
 
   //update data of individual user //
-  editUser(user_id: any, user_dto: any): Observable<any> {
-    return this.apiService.put(this.user_url + user_id, user_dto);
+  editUser(id: any, user_dto: any): Observable<any> {
+    return this.apiService.put(this.user_url + id, user_dto);
   }
 
-  deleteUser(user_id: any) {
-    return this.apiService.delete(this.user_url + user_id);
+  deleteUser(id: any) {
+    return this.apiService.delete(this.user_url + id);
   }
 
 }

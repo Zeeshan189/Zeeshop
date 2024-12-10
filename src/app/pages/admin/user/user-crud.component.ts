@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { AdminService } from '../services/admin.service';
 import { Product, User } from '../../core/Model/object.model';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 declare var $: any;
 
 @Component({
@@ -25,7 +25,7 @@ export class UserCrudComponent implements OnInit {
   user_dto!: User;
   user_reg_data: any;
   edit_user_id: any;
-  upload_file_name!: string;
+  upload_file_name: any;
   addEditUser: boolean = false;
   add_user: boolean = false;
   edit_user: boolean = false;
@@ -36,6 +36,7 @@ export class UserCrudComponent implements OnInit {
   current_page: number = 1;
   items_per_page: number = 10;
   Math = Math;
+  showPassword = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,9 +50,8 @@ export class UserCrudComponent implements OnInit {
       mobNumber: ['', Validators.required],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      addLine1: ['', Validators.required],
+      address: ['', Validators.required],
       city: ['', Validators.required],
-      state: ['', Validators.required],
       zipCode: ['', Validators.required],
       gender: ['', Validators.required],
       uploadPhoto: ['', Validators.required],
@@ -63,7 +63,8 @@ export class UserCrudComponent implements OnInit {
   }
 
   getAllUser() {
-    this.adminService.allUser().subscribe(data => {
+    this.adminService.allUser().subscribe(
+      (data) => {
         this.all_user_data = data;
       },
       (error) => {
@@ -74,6 +75,10 @@ export class UserCrudComponent implements OnInit {
 
   get rf() {
     return this.addEditUserForm.controls;
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   addUserPopup() {
@@ -95,12 +100,9 @@ export class UserCrudComponent implements OnInit {
       agreetc: this.user_reg_data.agreetc,
       email: this.user_reg_data.email,
       gender: this.user_reg_data.gender,
-      address: {
-        addLine1: this.user_reg_data.addLine1,
-        city: this.user_reg_data.city,
-        state: this.user_reg_data.state,
-        zipCode: this.user_reg_data.zipCode,
-      },
+      address: this.user_reg_data.address,
+      city: this.user_reg_data.city,
+      zipCode: this.user_reg_data.zipCode,
       mobNumber: this.user_reg_data.mobNumber,
       name: this.user_reg_data.name,
       password: this.user_reg_data.password,
@@ -109,7 +111,7 @@ export class UserCrudComponent implements OnInit {
     };
     this.adminService.addUser(this.user_dto).subscribe(
       (data) => {
-        Swal.fire("User Add Successfully 😊!");
+        Swal.fire('User Add Successfully 😊!');
         this.addEditUserForm.reset();
         this.getAllUser();
         $('#addEditUserModal').modal('toggle');
@@ -122,39 +124,45 @@ export class UserCrudComponent implements OnInit {
 
   onFileChange(event: any) {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.addEditUserForm.patchValue({
-        uploadPhoto: reader.result?.toString().split(',')[1]
-      });
-    };
-    reader.readAsDataURL(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.upload_file_name = reader.result?.toString().split(',')[1];
+
+        this.addEditUserForm.patchValue({
+          uploadPhoto: this.upload_file_name,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
-  editUserPopup(user_id: any) {
-    this.edit_user_id = user_id;
+  editUserPopup(id: any) {
     this.edit_user = true;
     this.add_user = false;
     this.popup_header = 'Edit User';
-    this.adminService.singleuUser(user_id).subscribe(
+    this.addEditUserForm.reset();
+    this.adminService.singleuUser(id).subscribe(
       (data) => {
         this.single_user_data = data;
+        console.log('Single Data', this.single_user_data);
+        this.edit_user_id = data.id;
         if (this.single_user_data.uploadPhoto.startsWith('data:image')) {
-          this.upload_file_name = this.single_user_data.uploadPhoto.split(',')[1];
+          this.upload_file_name =
+            this.single_user_data.uploadPhoto.split(',')[1];
         }
         this.addEditUserForm.setValue({
-          name: this.single_user_data.name,
-          mobNumber: this.single_user_data.mobNumber,
-          email: this.single_user_data.email,
-          password: this.single_user_data.password,
-          gender: this.single_user_data.gender,
-          addLine1: this.single_user_data.address.addLine1,
-          city: this.single_user_data.address.city,
-          state: this.single_user_data.address.state,
-          zipCode: this.single_user_data.address.zipCode,
+          name: this.single_user_data.name || '',
+          mobNumber: this.single_user_data.mobNumber || '',
+          email: this.single_user_data.email || '',
+          password: this.single_user_data.password || '',
+          gender: this.single_user_data.gender || '',
+          address: this.single_user_data.address || '',
+          city: this.single_user_data.city || '',
+          zipCode: this.single_user_data.zipCode || '',
           uploadPhoto: this.upload_file_name || '',
-          agreetc: this.single_user_data.agreetc,
-          role: this.single_user_data.role,
+          agreetc: this.single_user_data.agreetc || '',
+          role: this.single_user_data.role || '',
         });
       },
       (error) => {
@@ -164,6 +172,7 @@ export class UserCrudComponent implements OnInit {
   }
 
   updateUser() {
+    this.addEditUser = true;
     if (this.addEditUserForm.invalid) {
       alert('Error!! :-)\n\n' + JSON.stringify(this.addEditUserForm.value));
       return;
@@ -174,12 +183,9 @@ export class UserCrudComponent implements OnInit {
       agreetc: this.user_reg_data.agreetc,
       email: this.user_reg_data.email,
       gender: this.user_reg_data.gender,
-      address: {
-        addLine1: this.user_reg_data.addLine1,
-        city: this.user_reg_data.city,
-        state: this.user_reg_data.state,
-        zipCode: this.user_reg_data.zipCode,
-      },
+      address: this.user_reg_data.address,
+      city: this.user_reg_data.city,
+      zipCode: this.user_reg_data.zipCode,
       mobNumber: this.user_reg_data.mobNumber,
       name: this.user_reg_data.name,
       password: this.user_reg_data.password,
@@ -188,7 +194,7 @@ export class UserCrudComponent implements OnInit {
     };
     this.adminService.editUser(this.edit_user_id, this.user_dto).subscribe(
       (data) => {
-        Swal.fire("User Update Successfully 😊!");
+        Swal.fire('User Update Successfully 😊!');
         this.addEditUserForm.reset();
         this.getAllUser();
         $('#addEditUserModal').modal('toggle');
@@ -199,29 +205,29 @@ export class UserCrudComponent implements OnInit {
     );
   }
 
-  deleteUser(user_id:any){
+  deleteUser(id: any) {
     Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this 🙄!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.adminService.deleteUser(user_id).subscribe((res) => {
+        this.adminService.deleteUser(id).subscribe((res) => {
           this.getAllUser();
         });
         Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted 😊!",
-          icon: "success"
+          title: 'Deleted!',
+          text: 'Your file has been deleted 😊!',
+          icon: 'success',
         });
       }
     });
   }
-  
+
   fetchProductData() {
     this.adminService.allUser().subscribe(
       (data) => {

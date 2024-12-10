@@ -35,7 +35,7 @@
       <td>{{ user_data.name }}</td>
       <td>{{ user_data.mobNumber }}</td>
       <td>{{ user_data.email }}</td>
-      <td>{{ user_data.address.city }}</td>
+      <td>{{ user_data.city }}</td>
       <td>
         <img
           [src]="'data:image/jpeg;base64,' + user_data.uploadPhoto"
@@ -173,7 +173,7 @@
                 <div class="form-group col-md-12">
                   <label for="inputPassword4">Password</label>
                   <input
-                    type="password"
+                    [type]="showPassword ? 'text' : 'password'"
                     class="form-control"
                     placeholder="Password"
                     formControlName="password"
@@ -181,6 +181,11 @@
                       rf['password'].invalid && rf['password'].touched
                     "
                   />
+                  <i
+                    class="fa"
+                    [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                    (click)="togglePassword()"
+                  ></i>
                   <div
                     class="text-danger"
                     *ngIf="rf['password'].invalid && rf['password'].touched"
@@ -195,14 +200,14 @@
                   type="text"
                   class="form-control"
                   placeholder="1234 Main St"
-                  formControlName="addLine1"
+                  formControlName="address"
                   [class.is-invalid]="
-                    rf['addLine1'].invalid && rf['addLine1'].touched
+                    rf['address'].invalid && rf['address'].touched
                   "
                 />
                 <div
                   class="text-danger"
-                  *ngIf="rf['addLine1'].invalid && rf['addLine1'].touched"
+                  *ngIf="rf['address'].invalid && rf['address'].touched"
                 >
                   Address is required
                 </div>
@@ -223,28 +228,6 @@
                     *ngIf="rf['city'].invalid && rf['city'].touched"
                   >
                     City is required
-                  </div>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputState">State</label>
-                  <select
-                    id="inputState"
-                    class="form-control"
-                    formControlName="state"
-                    [class.is-invalid]="
-                      rf['state'].invalid && rf['state'].touched
-                    "
-                  >
-                    <option selected>Choose...</option>
-                    <option>UP</option>
-                    <option>MP</option>
-                    <option>HP</option>
-                  </select>
-                  <div
-                    class="text-danger"
-                    *ngIf="rf['state'].invalid && rf['state'].touched"
-                  >
-                    State is required
                   </div>
                 </div>
                 <div class="form-group col-md-6">

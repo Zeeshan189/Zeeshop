@@ -75,3 +75,21 @@
 .page-link:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
+
+.form-control {
+  padding-right: 2.5rem;
+}
+
+.fa {
+  right: 13%;
+  top: 32%;
+  transform: translateY(-50%);
+  position: absolute;
+  cursor: pointer;
+  color: #001529;
+  transition: color 0.3s ease;
+}
+
+.fa:hover {
+  color: #001529;
+}

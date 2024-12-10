@@ -1,6 +1,6 @@
 .btn-profile {
   font-family: "Poppins", sans-serif;
-    margin-top: 1%;
+  margin-top: 1%;
   font-size: 15px;
   text-decoration: none;
   text-transform: uppercase;
@@ -13,4 +13,22 @@
   font-weight: bold;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
+}
+
+.form-control {
+  padding-right: 2.5rem;
+}
+
+.fa {
+  right: 17%; 
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  cursor: pointer;
+  color: #001529; 
+  transition: color 0.3s ease;
+}
+
+.fa:hover {
+  color: #001529;
 }

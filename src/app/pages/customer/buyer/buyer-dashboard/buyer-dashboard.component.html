@@ -71,8 +71,19 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center mt-3">
-    <li class="page-item" [class.disabled]="current_page === 1">
-      <a class="page-link" (click)="setPage(current_page - 1)">Previous</a>
+    <li
+      class="page-item"
+      [class.disabled]="current_page === 1"
+      [ngClass]="{ 'opacity-50 cursor-not-allowed': current_page === 1 }"
+    >
+      <a
+        class="page-link"
+        (click)="setPage(current_page - 1)"
+        [attr.disabled]="current_page === 1 ? true : null"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+        Previous
+      </a>
     </li>
     <li
       class="page-item"
@@ -91,8 +102,23 @@
       [class.disabled]="
         current_page === Math.ceil(all_products.length / items_per_page)
       "
+      [ngClass]="{
+        'opacity-50 cursor-not-allowed':
+          current_page === Math.ceil(all_products.length / items_per_page)
+      }"
     >
-      <a class="page-link" (click)="setPage(current_page + 1)">Next</a>
+      <a
+        class="page-link"
+        (click)="setPage(current_page + 1)"
+        [attr.disabled]="
+          current_page === Math.ceil(all_products.length / items_per_page)
+            ? true
+            : null
+        "
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+        Next
+      </a>
     </li>
   </ul>
 </nav>

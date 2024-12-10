@@ -1,0 +1,70 @@
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center" style="margin-top: -60px">
+      <div class="col-md-6 text-center mb-5">
+        <h2 class="heading-section">Admin Panel</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-5">
+        <div class="login-wrap p-4 p-md-5" style="margin-top: -10%">
+          <div
+            class="img d-flex align-items-center justify-content-center"
+            style="background-image: url(assets/images/person_3.jpg)"
+          ></div>
+          <h3 class="text-center mb-4">Sign In</h3>
+          <form
+            nz-form
+            [formGroup]="signInFormValue"
+            class="login-form"
+            (ngSubmit)="submitForm()"
+          >
+            <div class="form-group">
+              <nz-form-control
+                nzErrorTip="Please type your Email!"
+                style="text-align: center"
+              >
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="form-control rounded-left"
+                  placeholder="Email"
+                />
+              </nz-form-control>
+            </div>
+            <div class="form-group d-flex">
+              <nz-form-control
+                nzErrorTip="Please type your Password!"
+                style="text-align: center"
+              >
+                <nz-input-group [nzSuffix]="passwordSuffix">
+                  <input
+                    [type]="passwordVisible ? 'text' : 'password'"
+                    formControlName="password"
+                    class="form-control rounded-left"
+                    placeholder="Password"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+              <ng-template #passwordSuffix>
+                <i
+                  class="fa"
+                  [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"
+                  (click)="togglePasswordVisibility()"
+                ></i>
+              </ng-template>
+            </div>
+            <div class="form-group">
+              <button
+                type="submit"
+                class="form-control btn btn-secondary rounded submit px-3"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+.center {
+  margin-left: 37%;
+  font-weight: bold;
+}
+
+.btn {
+  font-family: "Poppins", sans-serif;
+  margin-left: 45%;
+  background-color: #001529 !important;
+  border-color: #001529 !important;
+  color: #fff;
+}

@@ -1,0 +1,299 @@
+<div class="d-lg-flex half" *ngIf="regForm">
+  <div
+    class="bg order-1 order-md-2"
+    style="background-image: url('assets/images/bg_1.jpg')"
+  ></div>
+  <div class="contents order-2 order-md-1">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-12">
+          <h3 style="text-align: center">Create your Account</h3>
+          <form
+            nz-form
+            [formGroup]="validateForm"
+            class="login-form"
+            (ngSubmit)="onSubmitSignUp()"
+          >
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">Name</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your Name!"
+                    style="text-align: center"
+                  >
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="name"
+                      placeholder="Name"
+                      id="username"
+                    />
+                  </nz-form-control>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">Mobile</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your Mobile Number!"
+                    style="text-align: center"
+                  >
+                    <input
+                      type="number"
+                      class="form-control"
+                      formControlName="mobile"
+                      placeholder="+92 3037896790"
+                      id="username"
+                    />
+                  </nz-form-control>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">Email</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your Email!"
+                    style="text-align: center"
+                  >
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="email"
+                      placeholder="your-email@gmail.com"
+                      id="username"
+                    />
+                  </nz-form-control>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group last mb-3">
+                  <label for="password">Password</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your Password!"
+                    style="text-align: center"
+                  >
+                    <nz-input-group [nzSuffix]="passwordSuffix">
+                      <input
+                        [type]="passwordVisible ? 'text' : 'password'"
+                        class="form-control"
+                        placeholder="Your Password"
+                        formControlName="password"
+                        id="password"
+                      />
+                    </nz-input-group>
+                  </nz-form-control>
+                  <ng-template #passwordSuffix>
+                    <i
+                      class="fa"
+                      [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"
+                      (click)="togglePasswordVisibility()"
+                    ></i>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">Address</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your Address!"
+                    style="text-align: center"
+                  >
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="address"
+                      placeholder="Address"
+                      id="username"
+                    />
+                  </nz-form-control>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">City</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your City!"
+                    style="text-align: center"
+                  >
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="city"
+                      placeholder="City"
+                      id="username"
+                    />
+                  </nz-form-control>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">Zip Code</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your zip cpde!"
+                    style="text-align: center"
+                  >
+                    <input
+                      type="number"
+                      class="form-control"
+                      formControlName="code"
+                      placeholder="Zip Code"
+                      id="username"
+                    />
+                  </nz-form-control>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">Select Gender</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your Gender!"
+                    style="text-align: center"
+                  >
+                    <select
+                      class="form-control"
+                      formControlName="gender"
+                      nzPlaceHolder="Choose"
+                      id="username"
+                    >
+                      <option Value="Male">Male</option>
+                      <option Value="Female">Female</option>
+                    </select>
+                  </nz-form-control>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">Image</label>
+                  <nz-form-control
+                    nzErrorTip="Please input your image!"
+                    style="text-align: center"
+                  >
+                    <input
+                      type="file"
+                      class="form-control"
+                      formControlName="image"
+                      placeholder="choose File"
+                      id="username"
+                    />
+                  </nz-form-control>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group first">
+                  <label for="username">What you want to do?</label>
+                  <nz-form-control
+                    nzErrorTip="Please add your role!"
+                    style="text-align: center"
+                  >
+                    <select
+                      class="form-control"
+                      formControlName="role"
+                      nzPlaceHolder="Choose"
+                      id="username"
+                    >
+                      <option Value="seller">Seller</option>
+                      <option Value="buyer">Buyer</option>
+                    </select>
+                  </nz-form-control>
+                </div>
+              </div>
+            </div>
+            <input
+              type="submit"
+              value="Sign Up"
+              class="btn btn-block btn-secondary mt-2"
+            />
+          </form>
+          <div class="text-center p-t-136">
+            <a class="txt2" routerLink="/sign-in">
+              Click For Sign In
+              <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-lg-flex half" *ngIf="!regForm">
+  <div
+    class="bg order-1 order-md-2"
+    style="background-image: url('assets/images/bg_1.jpg'); height: 110vh"
+  ></div>
+  <div class="contents order-2 order-md-1">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-7">
+          <h3 style="text-align: center">Login</h3>
+          <form
+            nz-form
+            [formGroup]="validateForm"
+            class="login-form"
+            (ngSubmit)="submitForm()"
+          >
+            <div class="form-group first">
+              <label for="email">Email</label>
+              <nz-form-control
+                nzErrorTip="Please type your Email!"
+                style="text-align: center"
+              >
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="your-email@gmail.com"
+                  id="email"
+                />
+              </nz-form-control>
+            </div>
+            <div class="form-group last mb-3">
+              <label for="password">Password</label>
+              <nz-form-control
+                nzErrorTip="Please type your Password!"
+                style="text-align: center"
+              >
+                <nz-input-group [nzSuffix]="passwordSuffix">
+                  <input
+                    [type]="passwordVisible ? 'text' : 'password'"
+                    class="form-control"
+                    placeholder="Your Password"
+                    formControlName="password"
+                    id="password"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+              <ng-template #passwordSuffix>
+                <i
+                  class="fa"
+                  [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"
+                  (click)="togglePasswordVisibility()"
+                ></i>
+              </ng-template>
+            </div>
+            <input
+              type="submit"
+              value="Log In"
+              class="btn btn-block btn-secondary"
+            />
+          </form>
+          <div class="text-center p-t-136">
+            <a class="txt2" routerLink="/sign-up">
+              Create your Account
+              <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

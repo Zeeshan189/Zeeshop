@@ -1,0 +1,45 @@
+<div class="jumbotron p-3 p-md-2 rounded">
+  <div class="col-md-12 px-0">
+    <h1 class="text-center dark:!text-white">
+      Welcome To Seller Dashboard
+    </h1>
+    <p class="lead my-3 text-center">Seller can manage product</p>
+  </div>
+</div>
+
+<!-- order details -->
+<div class="row mb-2">
+  <div class="col-md-6">
+    <div
+      class="dashboard-card order-dashboard-card"
+      (click)="preventNavigation($event)"
+    >
+      <h3>Order Dashboard</h3>
+      <div class="mb-1 last-date">
+        Last order Date: <strong>{{ last_order_date }}</strong>
+      </div>
+      <google-chart
+        [type]="orderChartType"
+        [data]="orderChartData"
+        [columns]="orderColumnNames"
+        [options]="orderChartOptions"
+      ></google-chart>
+    </div>
+  </div>
+
+  <!-- product details-->
+  <div class="col-md-6">
+    <div
+      class="dashboard-card product-dashboard-card"
+      (click)="sellerProductDashboard()"
+    >
+      <h3>Product Dashboard</h3>
+      <google-chart
+        [type]="productChartType"
+        [data]="productChartData"
+        [columns]="productColumnNames"
+        [options]="productChartOptions"
+      ></google-chart>
+    </div>
+  </div>
+</div>

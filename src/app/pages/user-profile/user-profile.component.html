@@ -1,7 +1,7 @@
 <br />
 <div class="jumbotron">
   <div class="conrainer">
-    <div class="row">
+    <div class="row mb-5">
       <div class="col-md-10 offset-md-1">
         <form [formGroup]="userProfileForm" (ngSubmit)="updateProfile()">
           <div class="form-group">
@@ -26,25 +26,25 @@
                 formControlName="email"
               />
             </div>
-            <div class="form-group col-md-12">
+            <div class="form-group pass-icon col-md-12">
               <label
                 for="inputPassword4"
                 class="block text-sm font-medium text-gray-700"
                 >Password</label
               >
-              <div class="relative mt-1">
-                <input
-                  [type]="showPassword ? 'text' : 'password'"
-                  class="form-control"
-                  placeholder="Password"
-                  formControlName="password"
-                />
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                placeholder="Password"
+                formControlName="password"
+              />
+              <span class="faa-icon">
                 <i
                   class="fa"
                   [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
                   (click)="togglePassword()"
                 ></i>
-              </div>
+              </span>
             </div>
           </div>
           <div class="form-group">
@@ -53,7 +53,25 @@
               type="text"
               class="form-control"
               placeholder="1234 Main St"
-              formControlName="addLine1"
+              formControlName="address"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputCity">City</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="gryujlt"
+              formControlName="city"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputZip">Zip Code</label>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="12345"
+              formControlName="zipCode"
             />
           </div>
           <div class="form-group">
@@ -78,16 +96,6 @@
               />
               <label class="form-check-label" for="inlineRadio2">Female</label>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlFile1"
-              >Upload Your Profile Photo</label
-            >
-            <input
-              type="file"
-              class="form-control-file"
-              formControlName="uploadPhoto"
-            />
           </div>
           <div class="form-group">
             <button class="btn-profile btn-success">Update your Profile</button>

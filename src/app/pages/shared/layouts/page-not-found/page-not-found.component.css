@@ -1,24 +1,6 @@
-.notfound a {
-  font-family: "Poppins", sans-serif;
-  font-size: 15px;
-  text-decoration: none;
-  text-transform: uppercase;
-  background-color: #001529;
-  display: inline-block;
-  padding: 5px 10px;
-  border: 2px solid transparent;
-  border-radius: 25px;
-  color: #fff;
-  font-weight: bold;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
-}
-
-.notfound a:hover {
-  background-color: #fff;
-  border-color: #001529;
-  cursor: pointer;
-  color: #001529;
+.notfound {
+  text-align: center;
+  margin-top: 130px;
 }
 
 @media only screen and (max-width: 480px) {

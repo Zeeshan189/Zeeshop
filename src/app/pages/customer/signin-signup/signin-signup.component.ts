@@ -35,7 +35,6 @@ export class SigninSignupComponent {
   regForm: boolean = false;
   href: string = '';
   user_data: any;
-  upload_file_name!: any;
   validateForm!: FormGroup;
 
   constructor(
@@ -56,7 +55,6 @@ export class SigninSignupComponent {
         city: ['', [Validators.required]],
         zipCode: ['', [Validators.required]],
         gender: ['', [Validators.required]],
-        uploadPhoto: ['', [Validators.required]],
         role: ['', [Validators.required]],
       });
     } else if (this.href == '/sign-in') {
@@ -65,21 +63,6 @@ export class SigninSignupComponent {
         email: [null, [Validators.email, Validators.required]],
         password: [null, [Validators.required]],
       });
-    }
-  }
-
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.upload_file_name = reader.result?.toString().split(',')[1];
-
-        this.validateForm.patchValue({
-          uploadPhoto: this.upload_file_name,
-        });
-      };
-      reader.readAsDataURL(file);
     }
   }
 

@@ -25,10 +25,9 @@ export class UserCrudComponent implements OnInit {
   user_dto!: User;
   user_reg_data: any;
   edit_user_id: any;
-  upload_file_name: any;
   addEditUser: boolean = false;
-  add_user: boolean = false;
-  edit_user: boolean = false;
+  add_user!: boolean;
+  edit_user!: boolean;
   popup_header!: string;
   signInFormValue: any = {};
   isDarkMode: boolean = false;
@@ -40,23 +39,21 @@ export class UserCrudComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private adminService: AdminService
+    private adminService: AdminService,
   ) {}
 
   ngOnInit(): void {
-    this.getAllUser();
     this.addEditUserForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      mobNumber: ['', Validators.required],
+      name: ['', [Validators.required]],
+      mobNumber: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      zipCode: ['', Validators.required],
-      gender: ['', Validators.required],
-      uploadPhoto: ['', Validators.required],
-      agreetc: ['', Validators.required],
-      role: ['', Validators.required],
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      zipCode: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      agreetc: ['', [Validators.required]],
+      role: ['', [Validators.required]],
     });
     this.getAllUser();
     this.fetchProductData();
@@ -66,6 +63,7 @@ export class UserCrudComponent implements OnInit {
     this.adminService.allUser().subscribe(
       (data) => {
         this.all_user_data = data;
+        this.setPage(1);
       },
       (error) => {
         console.log('My error', error);
@@ -106,7 +104,6 @@ export class UserCrudComponent implements OnInit {
       mobNumber: this.user_reg_data.mobNumber,
       name: this.user_reg_data.name,
       password: this.user_reg_data.password,
-      uploadPhoto: this.addEditUserForm.value.uploadPhoto,
       role: this.user_reg_data.role,
     };
     this.adminService.addUser(this.user_dto).subscribe(
@@ -122,21 +119,6 @@ export class UserCrudComponent implements OnInit {
     );
   }
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.upload_file_name = reader.result?.toString().split(',')[1];
-
-        this.addEditUserForm.patchValue({
-          uploadPhoto: this.upload_file_name,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
   editUserPopup(id: any) {
     this.edit_user = true;
     this.add_user = false;
@@ -147,10 +129,7 @@ export class UserCrudComponent implements OnInit {
         this.single_user_data = data;
         console.log('Single Data', this.single_user_data);
         this.edit_user_id = data.id;
-        if (this.single_user_data.uploadPhoto.startsWith('data:image')) {
-          this.upload_file_name =
-            this.single_user_data.uploadPhoto.split(',')[1];
-        }
+
         this.addEditUserForm.setValue({
           name: this.single_user_data.name || '',
           mobNumber: this.single_user_data.mobNumber || '',
@@ -160,7 +139,6 @@ export class UserCrudComponent implements OnInit {
           address: this.single_user_data.address || '',
           city: this.single_user_data.city || '',
           zipCode: this.single_user_data.zipCode || '',
-          uploadPhoto: this.upload_file_name || '',
           agreetc: this.single_user_data.agreetc || '',
           role: this.single_user_data.role || '',
         });
@@ -189,7 +167,6 @@ export class UserCrudComponent implements OnInit {
       mobNumber: this.user_reg_data.mobNumber,
       name: this.user_reg_data.name,
       password: this.user_reg_data.password,
-      uploadPhoto: this.addEditUserForm.value.uploadPhoto,
       role: this.user_reg_data.role,
     };
     this.adminService.editUser(this.edit_user_id, this.user_dto).subscribe(

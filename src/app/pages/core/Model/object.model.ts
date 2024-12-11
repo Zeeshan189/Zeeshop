@@ -1,7 +1,6 @@
 export class User {
   name!: string;
   password!: string;
-  uploadPhoto!: string;
   role!: string;
   mobNumber!: string;
   address!: string;
@@ -12,12 +11,7 @@ export class User {
   agreetc!: boolean;
   id: any;
 }
-// export class Address {
-//   addLine1!: string;
-//   city!: string;
-//   state!: string;
-//   zipCode!: number;
-// }
+
 export class Product {
   name!: string;
   uploadPhoto!: string;

@@ -19,16 +19,23 @@
   padding-right: 2.5rem;
 }
 
-.fa {
-  right: 17%; 
-  top: 50%;
-  transform: translateY(-50%);
+.pass-icon {
+  position: relative;
+}
+
+.faa-icon {
   position: absolute;
-  cursor: pointer;
-  color: #001529; 
-  transition: color 0.3s ease;
+  right: 10px;
+  top: 35px;
+  display: flex;
+  z-index: 100;
+}
+
+.fa {
+  color: #001529;
 }
 
 .fa:hover {
-  color: #001529;
+  color: #001529 !important;
+  cursor: pointer;
 }

@@ -26,9 +26,9 @@ export class UserProfileComponent implements OnInit {
   user_data: any;
   user_update_data: any;
   user_dto!: User;
-  user_profile_pic: any;
   user_role: any;
   showPassword = false;
+  edit_profile!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,7 +47,7 @@ export class UserProfileComponent implements OnInit {
       city: ['', Validators.required],
       zipCode: ['', Validators.required],
       gender: ['', Validators.required],
-      uploadPhoto: [''],
+      role: ['', [Validators.required]],
     });
     this.editUserData(this.user_id);
   }
@@ -60,11 +60,10 @@ export class UserProfileComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  editUserData(user_id: any) {
-    this.user_Service.getUserData(user_id).subscribe(
+  editUserData(id: any) {
+    this.user_Service.getUserData(id).subscribe(
       (data) => {
         this.user_data = data;
-        this.user_profile_pic = this.user_data.uploadPhoto;
         this.user_role = this.user_data.role;
         this.userProfileForm.setValue({
           name: this.user_data.name,
@@ -72,10 +71,10 @@ export class UserProfileComponent implements OnInit {
           email: this.user_data.email,
           password: this.user_data.password,
           gender: this.user_data.gender,
-          address: this.user_data.address.address,
-          city: this.user_data.address.city,
-          zipCode: this.user_data.address.zipCode,
-          uploadPhoto: '',
+          address: this.user_data.address,
+          city: this.user_data.city,
+          zipCode: this.user_data.zipCode,
+          role: this.user_data.role,
         });
       },
       (error) => {
@@ -101,10 +100,6 @@ export class UserProfileComponent implements OnInit {
       mobNumber: this.user_update_data.mobNumber,
       name: this.user_update_data.name,
       password: this.user_update_data.password,
-      uploadPhoto:
-        this.user_update_data.uploadPhoto == ''
-          ? this.user_profile_pic
-          : this.user_update_data.uploadPhoto,
       role: this.user_update_data.role,
     };
     this.user_Service.updateUserData(this.user_id, this.user_dto).subscribe(

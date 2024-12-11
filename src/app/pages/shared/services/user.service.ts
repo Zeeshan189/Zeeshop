@@ -13,11 +13,11 @@ export class UserService {
   constructor(private http:HttpClient, private apiService:ApiService) { }
 
   //get individual data
-  getUserData(user_id:any){
-    return this.apiService.get(this.user_url+user_id);
+  getUserData(id:any){
+    return this.apiService.get(this.user_url+id);
   }
   //update data by user_id
-  updateUserData(user_id:any, user_dto:any):Observable<any>{
-    return this.apiService.put(this.user_url+user_id, user_dto);
+  updateUserData(id:any, user_dto:any):Observable<any>{
+    return this.apiService.put(this.user_url+id, user_dto);
   }
 }

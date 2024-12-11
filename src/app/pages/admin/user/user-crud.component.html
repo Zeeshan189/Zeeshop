@@ -24,7 +24,6 @@
       <th scope="col">Mob</th>
       <th scope="col">Email</th>
       <th scope="col">City</th>
-      <th scope="col">Image</th>
       <th scope="col">Role</th>
       <th scope="col">Action</th>
     </tr>
@@ -36,13 +35,6 @@
       <td>{{ user_data.mobNumber }}</td>
       <td>{{ user_data.email }}</td>
       <td>{{ user_data.city }}</td>
-      <td>
-        <img
-          [src]="'data:image/jpeg;base64,' + user_data.uploadPhoto"
-          alt="User"
-          style="width: 47px; height: 38px; border-radius: 50%"
-        />
-      </td>
       <td>{{ user_data.role }}</td>
       <td>
         <span
@@ -63,8 +55,19 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center mt-3">
-    <li class="page-item" [class.disabled]="current_page === 1">
-      <a class="page-link" (click)="setPage(current_page - 1)">Previous</a>
+    <li
+      class="page-item"
+      [class.disabled]="current_page === 1"
+      [ngClass]="{ 'opacity-50 cursor-not-allowed': current_page === 1 }"
+    >
+      <a
+        class="page-link"
+        (click)="setPage(current_page - 1)"
+        [attr.disabled]="current_page === 1 ? true : null"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+        Previous
+      </a>
     </li>
     <li
       class="page-item"
@@ -83,8 +86,23 @@
       [class.disabled]="
         current_page === Math.ceil(all_user_data.length / items_per_page)
       "
+      [ngClass]="{
+        'opacity-50 cursor-not-allowed':
+          current_page === Math.ceil(all_user_data.length / items_per_page)
+      }"
     >
-      <a class="page-link" (click)="setPage(current_page + 1)">Next</a>
+      <a
+        class="page-link"
+        (click)="setPage(current_page + 1)"
+        [attr.disabled]="
+          current_page === Math.ceil(all_user_data.length / items_per_page)
+            ? true
+            : null
+        "
+      >
+        Next
+        <i class="fa-solid fa-chevron-right"></i>
+      </a>
     </li>
   </ul>
 </nav>
@@ -98,7 +116,7 @@
   aria-labelledby="addEditUserModal"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div
       class="modal-content"
       [ngClass]="{ 'dark-mode': isDarkMode, 'light-mode': !isDarkMode }"
@@ -110,7 +128,6 @@
           class="close"
           data-bs-dismiss="modal"
           aria-label="Close"
-          style="margin-left: 60%"
         >
           <span aria-hidden="true">X</span>
         </button>
@@ -170,22 +187,24 @@
                     Email is required
                   </div>
                 </div>
-                <div class="form-group col-md-12">
+                <div class="form-group pass-icon col-md-12">
                   <label for="inputPassword4">Password</label>
                   <input
                     [type]="showPassword ? 'text' : 'password'"
-                    class="form-control"
+                    class="form-control ucrud"
                     placeholder="Password"
                     formControlName="password"
                     [class.is-invalid]="
                       rf['password'].invalid && rf['password'].touched
                     "
                   />
-                  <i
-                    class="fa"
-                    [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
-                    (click)="togglePassword()"
-                  ></i>
+                  <span class="faa-icon">
+                    <i
+                      class="fa"
+                      [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+                      (click)="togglePassword()"
+                    ></i>
+                  </span>
                   <div
                     class="text-danger"
                     *ngIf="rf['password'].invalid && rf['password'].touched"
@@ -273,26 +292,6 @@
                   <label class="form-check-label" for="inlineRadio2"
                     >Female</label
                   >
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlFile1">Upload Your Photo</label>
-                <span *ngIf="edit_user">
-                  <span>Uploaded image</span><br />{{ upload_file_name }}
-                </span>
-                <input
-                  type="file"
-                  (change)="onFileChange($event)"
-                  formControlName="uploadPhoto"
-                  [class.is-invalid]="
-                    rf['uploadPhoto'].invalid && rf['uploadPhoto'].touched
-                  "
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="rf['uploadPhoto'].invalid && rf['uploadPhoto'].touched"
-                >
-                  Image is required
                 </div>
               </div>
               <div class="form-group">

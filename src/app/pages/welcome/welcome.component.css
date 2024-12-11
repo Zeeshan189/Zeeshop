@@ -43,10 +43,11 @@
 nz-footer {
   margin-top: auto;
   text-align: center;
-  position: sticky;
+  position: fixed;
   bottom: 0 !important;
   line-height: 1.5;
   width: 100%;
+  z-index: 100;
 }
 
 .btn-profile {
@@ -95,4 +96,8 @@ nz-footer {
   font-weight: bold;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
+}
+
+.inner-content{
+  margin-bottom: 70px;
 }
